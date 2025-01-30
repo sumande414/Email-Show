@@ -7,7 +7,7 @@ const Home = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('https://genovate.onrender.com/api/emails')
+            const response = await axios.get('https://genovate.onrender.com/emails')
             setEmailData(response.data)
             console.log(response.data)
         } catch (error) {
