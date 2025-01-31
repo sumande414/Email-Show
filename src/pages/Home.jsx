@@ -1,76 +1,32 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const [emailData, setEmailData] = useState([])
-    const [selectedEmail, setSelectedEmail] = useState(null)
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('https://genovate.onrender.com/api/emails')
-            setEmailData(response.data)
-            console.log(response.data)
-        } catch (error) {
-            console.error("Error fetching data:", error)
-        }
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])
+    const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
-            <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
-                Fetching All Emails From MySQL Database
-            </h1>
-            <div className="w-full max-w-6xl bg-white shadow-lg rounded-lg overflow-hidden">
-                {/* Table Header */}
-                <div className="grid md:grid-cols-5 sm:grid-cols-2 bg-gray-200 text-gray-700 text-sm font-semibold p-3">
-                    <p>#</p>
-                    <p>Date & Time</p>
-                    <p>Sender</p>
-                    <p>Subject</p>
-                    <p>Body</p>
-                </div>
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-green-500 p-6">
+            <div className="bg-white shadow-xl rounded-lg p-8 text-center max-w-lg w-full">
+                <h1 className="text-4xl font-extrabold text-gray-800 mb-6">Welcome to EmailScout</h1>
+                <p className="text-gray-700 text-lg mb-4">The best business email tracking app</p>
+                <p className="text-gray-600 mb-4">We monitor the <span className="font-semibold text-gray-900">spyder@gmail.com</span> business account</p>
+                <p className="text-gray-500 mb-6">Track emails, manage orders, and streamline your workflow with EmailScout.</p>
 
-                {/* Table Body */}
-                <div className="divide-y divide-gray-300">
-                    {emailData.slice(0, 10).map((item, index) => (
-                        <div 
-                            className="grid md:grid-cols-5 sm:grid-cols-2 text-gray-800 text-sm p-3 hover:bg-gray-100 transition cursor-pointer" 
-                            key={index}
-                            onClick={() => setSelectedEmail(item)}
-                        >
-                            <p className="font-medium">{index + 1}</p>
-                            <p>{new Date(item.email_date).toLocaleString()}</p>
-                            <p className="font-medium text-blue-600">{item.sender}</p>
-                            <p className="truncate text-gray-700">{item.subject}</p>
-                            <p className="truncate text-gray-500">{item.body}</p>
-                        </div>
-                    ))}
+                <div className="space-y-4">
+                    <button 
+                        onClick={() => navigate('/email')} 
+                        className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 hover:bg-blue-700">
+                        View Emails
+                    </button>
+                    <button 
+                        onClick={() => navigate('/order')} 
+                        className="w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 hover:bg-green-700">
+                        View Orders
+                    </button>
                 </div>
             </div>
-
-            {/* Modal for Email Details */}
-            {selectedEmail && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-                        <h2 className="text-xl font-semibold mb-4">{selectedEmail.subject}</h2>
-                        <p><strong>Sender:</strong> {selectedEmail.sender}</p>
-                        <p><strong>Date:</strong> {new Date(selectedEmail.email_date).toLocaleString()}</p>
-                        <p className="mt-4 text-gray-700">{selectedEmail.body}</p>
-                        <button 
-                            onClick={() => setSelectedEmail(null)}
-                            className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
