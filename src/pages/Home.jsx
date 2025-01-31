@@ -8,7 +8,7 @@ const Home = () => {
             <div className="bg-white shadow-xl rounded-lg p-8 text-center max-w-lg w-full">
                 <h1 className="text-4xl font-extrabold text-gray-800 mb-6">Welcome to EmailScout</h1>
                 <p className="text-gray-700 text-lg mb-4">The best business email tracking app</p>
-                <p className="text-gray-600 mb-4">We monitor the <span className="font-semibold text-gray-900">spyder@gmail.com</span> business account</p>
+                <p className="text-gray-600 mb-4">We monitor the <span className="font-semibold text-gray-900">spyder.gsc2024@gmail.com</span> business account</p>
                 <p className="text-gray-500 mb-6">Track emails, manage orders, and streamline your workflow with EmailScout.</p>
 
                 <div className="space-y-4">
