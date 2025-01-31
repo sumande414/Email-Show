@@ -2,7 +2,26 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+<<<<<<< HEAD
     const navigate = useNavigate();
+=======
+    const [emailData, setEmailData] = useState([])
+    const [selectedEmail, setSelectedEmail] = useState(null)
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://genovate.onrender.com/emails')
+            setEmailData(response.data)
+            console.log(response.data)
+        } catch (error) {
+            console.error("Error fetching data:", error)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+>>>>>>> 5ebdb468fb57e5d484e6d71ee5ae0b3f16236fbd
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-green-500 p-6">
