@@ -16,7 +16,7 @@ const Email = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(' https://genovate.vercel.app/emails')
+            const response = await axios.get('https://email-scout-backend.vercel.app/api/emails')
             setEmailData(response.data)
             console.log(response.data)
         } catch (error) {
